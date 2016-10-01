@@ -17,7 +17,6 @@ public class CalculateSalary {
 					sff.Surname=parts[2];
 					sff.birth_year=Integer.parseInt(parts[3]);
 					sff.startedWork=Integer.parseInt(parts[4]);
-					sff.Say();
 			}
 
 		}catch(FileNotFoundException e){
@@ -26,25 +25,20 @@ public class CalculateSalary {
 	}
 }
 class Staff{
-		String Name, Surname;
-		 int birth_year, startedWork;
-		 public void Say(){
-			 System.out.println(Name+" "+birth_year);
-		 }
-		 abstract void Salarycalc();
-		 /*Pedagogical(String degree,int papers){
+		String Name, department, Surname, degree;
+		 int birth_year, startedWork, papers;
+		 boolean managerial;
+		 staff.add(this.Name);
+		 /*abstract void Salarycalc();*/
+		 public void Pedagogical(){
 			 this.degree=degree;
 			 this.papers=papers;
 		 }
-		 Technical(String department,boolean managerial){
+		 public void Technical(){
 			 this.department=department;
 			 this.managerial=managerial;
 		 }
-		 public String toString(){
-			 return department+" "+papers+" ";
-			 return degree+" "+managerial+" ";
-		 }*/
 }
-class Salary extends Staff{
+/*class Salary extends Staff{
 
-}
+}*/
