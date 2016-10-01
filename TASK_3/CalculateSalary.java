@@ -17,7 +17,18 @@ public class CalculateSalary {
 					sff.Surname=parts[2];
 					sff.birth_year=Integer.parseInt(parts[3]);
 					sff.startedWork=Integer.parseInt(parts[4]);
+					if(parts[5].equals("MSc") || parts[5].equals("BSc") || parts[5].equals("PhD") || parts[5].equals("Prof") || parts[5].equals("none")){
+						Pedagogical ped=new Pedagogical(Integer.parseInt(parts[6]),parts[5]);
+					}
+					else{
+						if(parts[6].equals(M))
+						Technical tech=new Technical("true",parts[5]);
+						else
+						Technical tec=new Technical("false",parts[5]);
+					}
+
 			}
+
 		}catch(FileNotFoundException e){
 				System.out.print("NO FILE!");
 		}
@@ -26,11 +37,21 @@ public class CalculateSalary {
 class Pedagogical extends Staff{
 	int papers;
 	String degree;
+public Pedagogical(int papers, String degree){
+	this.papers=papers;
+	this.degree=degree;
+}
 }
 class Technical extends Staff{
-	boolean managerial;
+	String managerial;
 	 String department;
+	 public Technical(String managerial, String department){
+		 	this.managerial=managerial;
+			this.department=department;
+	 }
+
 }
+
 /*
 Or Staff extends Technical and Pedagogical??
 */
@@ -38,7 +59,6 @@ Or Staff extends Technical and Pedagogical??
 class Staff{
 		String Name, Surname;
 		 int birth_year, startedWork;
-
 		 /*abstract void Salarycalc();*/
 }
 /*class Salary extends Staff{
