@@ -18,26 +18,25 @@ public class CalculateSalary {
 					sff.birth_year=Integer.parseInt(parts[3]);
 					sff.startedWork=Integer.parseInt(parts[4]);
 			}
-
 		}catch(FileNotFoundException e){
 				System.out.print("NO FILE!");
 		}
 	}
 }
+class Pedagogical extends Staff{
+	int papers;
+	String degree;
+}
+class Technical extends Staff{
+	boolean managerial;
+	 String department;
+}
+
 class Staff{
-		String Name, department, Surname, degree;
-		 int birth_year, startedWork, papers;
-		 boolean managerial;
-		 staff.add(this.Name);
+		String Name, Surname;
+		 int birth_year, startedWork;
+
 		 /*abstract void Salarycalc();*/
-		 public void Pedagogical(){
-			 this.degree=degree;
-			 this.papers=papers;
-		 }
-		 public void Technical(){
-			 this.department=department;
-			 this.managerial=managerial;
-		 }
 }
 /*class Salary extends Staff{
 
