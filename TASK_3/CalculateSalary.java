@@ -31,6 +31,9 @@ class Technical extends Staff{
 	boolean managerial;
 	 String department;
 }
+/*
+Or Staff extends Technical and Pedagogical??
+*/
 
 class Staff{
 		String Name, Surname;
