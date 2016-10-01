@@ -12,19 +12,18 @@ public class CalculateSalary {
 			while(in.hasNext()){
 				String line=in.nextLine();
 				String[] parts=line.split(" ");
-					Staff sff=new Staff();
-					sff.Name=parts[1];
-					sff.Surname=parts[2];
-					sff.birth_year=Integer.parseInt(parts[3]);
-					sff.startedWork=Integer.parseInt(parts[4]);
+					Staff sff=new Staff(parts[1], parts[2],Integer.parseInt(parts[3]),Integer.parseInt(parts[4]));
 					if(parts[5].equals("MSc") || parts[5].equals("BSc") || parts[5].equals("PhD") || parts[5].equals("Prof") || parts[5].equals("none")){
 						Pedagogical ped=new Pedagogical(Integer.parseInt(parts[6]),parts[5]);
 					}
 					else{
-						if(parts[6].equals(M))
-						Technical tech=new Technical("true",parts[5]);
-						else
-						Technical tec=new Technical("false",parts[5]);
+						if(parts[6].equals("M")){
+							Technical tech=new Technical(true,parts[5]);
+						}
+						else{
+						Technical tec=new Technical(false,parts[5]);
+						}
+						/*dont works without {}*/
 					}
 
 			}
@@ -34,7 +33,7 @@ public class CalculateSalary {
 		}
 	}
 }
-class Pedagogical extends Staff{
+class Pedagogical{
 	int papers;
 	String degree;
 public Pedagogical(int papers, String degree){
@@ -42,25 +41,28 @@ public Pedagogical(int papers, String degree){
 	this.degree=degree;
 }
 }
-class Technical extends Staff{
-	String managerial;
+class Technical{
+	boolean managerial;
 	 String department;
-	 public Technical(String managerial, String department){
+	 public Technical(boolean managerial, String department){
 		 	this.managerial=managerial;
 			this.department=department;
 	 }
 
 }
 
+
 /*
 Or Staff extends Technical and Pedagogical??
 */
 
-class Staff{
+class Staff {
 		String Name, Surname;
 		 int birth_year, startedWork;
-		 /*abstract void Salarycalc();*/
+		public Staff(String Name, String Surname, int birth_year, int startedWork){
+			this.Name=Name;
+			this.Surname=Surname;
+			this.birth_year=birth_year;
+			this.startedWork=startedWork;
+		}
 }
-/*class Salary extends Staff{
-
-}*/
