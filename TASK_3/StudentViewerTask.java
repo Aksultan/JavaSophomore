@@ -10,22 +10,22 @@ public class StudentViewerTask {
 		loadValues(groups,students);
 		/* This lines should output students ordered by id
 		 * Uncomment following line	 */
-		//Collections.sort(groups.get("A03"));
-		System.out.println(groups.get("A03"));
+		Collections.sort(groups.get("A03"));
+		System.out.println((groups.get("A03")));
 		/* Output students sorted by their average */
-		
+
 		/* Output students who doesn't have debt and has average above 80 points */
-		
-		/* Your code should return ArrayList<String> 
+
+		/* Your code should return ArrayList<String>
 		 * that contains name and surname in "Mr. J. Bezos" format */
-		
+
 		/* Find if student with specified name and surname present in list */
 		String name = in.nextLine();
 		String surname = in.nextLine();
 		Student s = new Student(name,surname);
-		
+
 		/* Count number of students from each group that got more than 50 points in average*/
-		
+
 		in.close();
 	}
 	public static void loadValues(HashMap<String,ArrayList<Student>> maps,ArrayList<Student> students){
