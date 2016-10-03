@@ -10,7 +10,7 @@ public class StudentViewerTask {
 		loadValues(groups,students);
 		/* This lines should output students ordered by id
 		 * Uncomment following line	 */
-		Collections.sort(groups.get("A03"));
+		//Collections.sort(groups.get("A03"));
 		System.out.println((groups.get("A03")));
 		/* Output students sorted by their average */
 

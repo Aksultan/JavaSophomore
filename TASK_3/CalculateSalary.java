@@ -6,26 +6,28 @@ public class CalculateSalary {
 		File file=new File("staff.txt");
 		Scanner in=new Scanner(System.in);
 		Scanner scanner=new Scanner(System.in);
-		ArrayList<Staff> staff=new ArrayList<>();
+		ArrayList<Pedagogical> pedo=new ArrayList<>();
+		ArrayList<Technical> tehno=new ArrayList<>();
 		try{
 			in=new Scanner(file);
 			while(in.hasNext()){
 				String line=in.nextLine();
 				String[] parts=line.split(" ");
-					Staff sff=new Staff(parts[1], parts[2],Integer.parseInt(parts[3]),Integer.parseInt(parts[4]));
 					if(parts[0].equals("P")){
-						Pedagogical ped=new Pedagogical(Integer.parseInt(parts[6]),parts[5]);
-						staff.add(ped);
+						Pedagogical ped=new Pedagogical(parts[1], parts[2],Integer.parseInt(parts[3]),Integer.parseInt(parts[4]),Integer.parseInt(parts[6]),parts[5]);
+						pedo.add(ped);
 
 					}
 					else{
 						if(parts[6].equals("M")){
-							Technical tech=new Technical(true,parts[5]);
+							Technical tec=new Technical(parts[1], parts[2],Integer.parseInt(parts[3]),Integer.parseInt(parts[4]), true,parts[5]);
+							tehno.add(tec);
 						}
 						else{
-							Technical tec=new Technical(false,parts[5]);
+							Technical tec=new Technical(parts[1], parts[2],Integer.parseInt(parts[3]),Integer.parseInt(parts[4]), false,parts[5]);
+							tehno.add(tec);
 						}
-						staff.add(tec);
+
 						/*dont works without {}*/
 					}
 
@@ -36,16 +38,25 @@ public class CalculateSalary {
 		}
 	}
 }
-class Pedagogical extends Staff{
+class Pedagogical{
+	String Name;
+	String Surname;
+	int birth_year;
+	int startedWork;
 	int papers;
 	String degree;
-public Pedagogical(int papers, String degree){
+public Pedagogical(String Name, String Surname, int birth_year, int startedWork, int papers, String degree){
+	this.Name=Name;
+	this.Surname=Surname;
+	this.birth_year=birth_year;
+	this.startedWork=startedWork;
 	this.papers=papers;
 	this.degree=degree;
 }
 public int salary(){
 	double salary=0;
 	int max=0;
+	int year=(2016-startedWork);
 	 if (degree.equals("MSc")){
 		 salary=300;
 	 }
@@ -63,20 +74,37 @@ public int salary(){
 	 }
 	 else if(papers>=5){
 		 salary+=500;
-
 	 }
-	 System.out.println( salary);
+	 if(year>10){
+			 salary=(salary*0.3)+salary;
+	 }
+	 else if(year>5 && year<10){
+		 salary=(salary*0.2)+salary;
+	 }
+	 else if(year>3 && year<5){
+		 salary=(salary*0.1)+salary;
+	 }
+	 System.out.println(salary);
 	 /*if(papers>max){
 		 max=papers;
 	 }*/
 	}
 }
-class Technical extends Staff{
+
+class Technical{
+	String Name;
+	String Surname;
+	int birth_year;
+	int startedWork;
 	boolean managerial;
-	 String department;
-	 public Technical(boolean managerial, String department){
-		 	this.managerial=managerial;
-			this.department=department;
+	String department;
+	 public Technical(String Name, String Surname, int birth_year, int startedWork, boolean managerial, String department){
+		 this.Name=Name;
+		 this.Surname=Surname;
+		 this.birth_year=birth_year;
+		 this.startedWork=startedWork;
+		 this.managerial=managerial;
+		 this.department=department;
 	 }
 	 public int salary(){
 		double salary=0;
@@ -100,21 +128,27 @@ class Technical extends Staff{
 
  	}
 }
-/*
-Or Staff extends Technical and Pedagogical??
-*/
-
 class Staff{
-		String Name, Surname;
-		 int birth_year, startedWork;
-		public Staff(String Name, String Surname, int birth_year, int startedWork){
+	String Name;
+	String Surname;
+	int birth_year;
+	int startedWork;
+	int papers;
+	String degree;
+	boolean managerial;
+	String department;
+	public Staff(
+		String Name,String Surname,String degree, String department,
+		int birth_year,int startedWork,int papers,
+		boolean managerial){
 			this.Name=Name;
-			this.Surname=Surname;
-			this.birth_year=birth_year;
-			this.startedWork=startedWork;
+ 		 this.Surname=Surname;
+ 		 this.birth_year=birth_year;
+ 		 this.startedWork=startedWork;
+ 		 this.managerial=managerial;
+ 		 this.department=department;
+	 	this.papers=papers;
+	 	this.degree=degree;
+
 		}
-		public int salary(){
-
-
-}
 }

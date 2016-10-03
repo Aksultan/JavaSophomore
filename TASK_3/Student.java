@@ -19,4 +19,7 @@ public class Student{
 	int age,debt;
 	int grades[];
 	int id;
+	public String toString(){
+		return id+" "+name+" "+surname+" "+age+" "+group+" "+Arrays.toString(grades);
+	}
 }
